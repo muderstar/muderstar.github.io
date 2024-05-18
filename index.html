@@ -16,13 +16,16 @@
         }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="path/to/canvas2svg.js"></script> <!-- Make sure to include canvas2svg.js -->
 </head>
 <body>
 
-<canvas id="myChart"></canvas>
+<div style="position: relative; height:60vh; width:90vh">
+    <canvas id="myChart"></canvas>
+</div>
 
 <script>
-    var ctx = document.getElementById('myChart').getContext('2d');
+    var ctx = document.getElementById("myChart").getContext("2d");
     var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
@@ -60,19 +63,14 @@
         }
     });
 
-    // Generate SVG string
-    var svgString = myChart.toSVG();
+    // Create canvas2svg 'fake' context
+    var c2s = C2S(500,500);
 
-    // Embed SVG string into the hidden div
-    document.getElementById('svgContainer').innerHTML = svgString;
+    // new chart on 'fake' context
+    var mySvg = new Chart(c2s, myChart.options);
 
-    // Convert the div to an object to display it
-    var obj = document.getElementById('svgContainer');
-    var embed = document.createElement('embed');
-    embed.type = 'image/svg+xml';
-    embed.src = '#';
-    embed.innerHTML = svgString;
-    document.body.appendChild(embed);
+    // Now mySvg contains the SVG representation of the chart
+    // You can manipulate mySvg as needed
 </script>
 
 </body>
