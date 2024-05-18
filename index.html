@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>练习卡片 Made by suystar_bg</title>
+    <title>SVG Chart Display</title>
     <style>
         body {
             background-color: black;
@@ -14,16 +14,10 @@
             height: 100vh;
             margin: 0;
         }
-        canvas {
-            max-width: 70%;
-            max-height: 60%;
-        }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-
-
 
 <canvas id="myChart"></canvas>
 
@@ -65,6 +59,20 @@
             }
         }
     });
+
+    // Generate SVG string
+    var svgString = myChart.toSVG();
+
+    // Embed SVG string into the hidden div
+    document.getElementById('svgContainer').innerHTML = svgString;
+
+    // Convert the div to an object to display it
+    var obj = document.getElementById('svgContainer');
+    var embed = document.createElement('embed');
+    embed.type = 'image/svg+xml';
+    embed.src = '#';
+    embed.innerHTML = svgString;
+    document.body.appendChild(embed);
 </script>
 
 </body>
