@@ -1,68 +1,71 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>个人信息卡片</title>
+    <title>练习卡片 Made by suystar_bg</title>
     <style>
         body {
-            background-color: #f0f0f0; /* 页面背景色 */
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
             display: flex;
-            justify-content: center; /* 水平居中 */
-            align-items: center; /* 垂直居中 */
-            height: 100vh; /* 视口高度 */
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
             margin: 0;
         }
-        .card {
-            background-color: #000; /* 黑色背景 */
-            color: #fff; /* 白色文字 */
-            padding: 20px; /* 内边距 */
-            border-radius: 10px; /* 圆角边框 */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 阴影效果 */
-        }
-        table {
-            width: 100%; /* 表格宽度 */
-            margin-top: 20px; /* 表格与上方内容的间距 */
-            border-collapse: collapse; /* 边框合并 */
-        }
-        th, td {
-            padding: 10px; /* 单元格内边距 */
-            border: 1px solid #fff; /* 单元格边框 */
-            text-align: left; /* 文字左对齐 */
-        }
-        th {
-            background-color: #333; /* 表头背景色 */
-            color: #fff; /* 表头文字颜色 */
+        canvas {
+            max-width: 70%;
+            max-height: 60%;
         }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <div class="card">
-        <h1>个人信息</h1>
-        <p><strong>姓名：</strong>张三</p>
-        <p><strong>年龄：</strong>28</p>
-        <p><strong>职业：</strong>软件工程师</p>
-        <!-- 你可以继续添加更多个人信息 -->
-        
-        <!-- 柱状图表格 -->
-        <table>
-            <tr>
-                <th>项目</th>
-                <th>数值</th>
-            </tr>
-            <tr>
-                <td>项目1</td>
-                <td>50</td>
-            </tr>
-            <tr>
-                <td>项目2</td>
-                <td>75</td>
-            </tr>
-            <tr>
-                <td>项目3</td>
-                <td>25</td>
-            </tr>
-            <!-- 你可以继续添加更多项目 -->
-        </table>
-    </div>
+
+
+
+<canvas id="myChart"></canvas>
+
+<script>
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['入门', '普及-', '普及/提升-', '普及+/提高', '提高+/省选-', '省选/NOI-', 'NOI/NOI+/CTSC'],
+            datasets: [{
+                label: 'Colors',
+                data: [50, 27, 5, 1, 0, 0, 1],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 205, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(201, 203, 207, 0.2)'
+                ],
+                borderColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(255, 159, 64)',
+                    'rgb(255, 205, 86)',
+                    'rgb(75, 192, 192)',
+                    'rgb(54, 162, 235)',
+                    'rgb(153, 102, 255)',
+                    'rgb(201, 203, 207)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+
 </body>
 </html>
